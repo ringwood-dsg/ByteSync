@@ -9,8 +9,6 @@ public static class QuartzConfiguration
     {
         services.AddQuartz(q =>
         {
-            q.UseMicrosoftDependencyInjectionJobFactory();
-
             var refreshAnnouncementsJobKey = new JobKey("RefreshAnnouncementsJob");
             q.AddJob<RefreshAnnouncementsJob>(opts => opts.WithIdentity(refreshAnnouncementsJobKey));
             q.AddTrigger(opts => opts

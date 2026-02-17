@@ -52,17 +52,12 @@ builder.Services.AddMediatR(cfg =>
 
 DependencyInjectionConfiguration.RegisterServices(builder.Services, builder.Configuration);
 
-builder.Services.AddQuartz(q =>
-{
-    q.UseMicrosoftDependencyInjectionJobFactory();
-});
+QuartzConfiguration.ConfigureJobs(builder.Services);
 
 builder.Services.AddQuartzHostedService(options =>
 {
     options.WaitForJobsToComplete = true;
 });
-
-QuartzConfiguration.ConfigureJobs(builder.Services);
 
 var app = builder.Build();
 
