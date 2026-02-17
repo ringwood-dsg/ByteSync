@@ -35,6 +35,15 @@ var appSettings = appSettingsSection.Get<AppSettings>();
 
 if (appSettings != null)
 {
+    if (string.IsNullOrWhiteSpace(appSettings.Secret) || 
+        appSettings.Secret.Contains("CHANGE_THIS", StringComparison.OrdinalIgnoreCase) ||
+        appSettings.Secret == "YourSecretKeyHere")
+    {
+        throw new InvalidOperationException(
+            "JWT Secret must be configured in AppSettings. " +
+            "Please set a secure secret key in appsettings.json or User Secrets.");
+    }
+    
     builder.Services.AddClaimAuthorization();
     builder.Services.AddJwtAuthentication(appSettings.Secret);
 }

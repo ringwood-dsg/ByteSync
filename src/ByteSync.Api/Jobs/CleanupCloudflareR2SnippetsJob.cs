@@ -18,7 +18,7 @@ public class CleanupCloudflareR2SnippetsJob : IJob
 
     public async Task Execute(IJobExecutionContext context)
     {
-        _logger.LogInformation("Cleanup Cloudflare R2 Job started at: {Now}", DateTime.Now);
+        _logger.LogInformation("Cleanup Cloudflare R2 Job started at: {Now}", DateTime.UtcNow);
         var deletedCount = await _mediator.Send(new CleanupCloudflareR2SnippetsRequest());
         _logger.LogInformation("Cleanup Cloudflare R2 Job - Deletion complete, {Deleted} element(s)", deletedCount);
     }

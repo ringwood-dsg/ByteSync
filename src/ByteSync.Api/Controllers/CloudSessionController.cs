@@ -66,7 +66,7 @@ public class CloudSessionController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("{sessionId}/givePassworkExchangeKey")]
+    [HttpPost("{sessionId}/givePasswordExchangeKey")]
     public async Task<IActionResult> GiveCloudSessionPasswordExchangeKey(string sessionId, 
         [FromBody] GiveCloudSessionPasswordExchangeKeyParameters parameters)
     {

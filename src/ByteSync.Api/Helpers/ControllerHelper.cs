@@ -8,8 +8,7 @@ public static class ControllerHelper
 {
     public static async Task<Client> GetClientFromContext(HttpContext context, IClientsRepository clientsRepository)
     {
-        var clientInstanceId = context.User.Claims
-            .FirstOrDefault(c => c.Type.Equals(AuthConstants.CLAIM_CLIENT_INSTANCE_ID))?.Value;
+        var clientInstanceId = context.User.FindFirst(AuthConstants.CLAIM_CLIENT_INSTANCE_ID)?.Value;
         
         if (string.IsNullOrEmpty(clientInstanceId))
         {

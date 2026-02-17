@@ -18,7 +18,7 @@ public class CleanupAzureBlobStorageSnippetsJob : IJob
 
     public async Task Execute(IJobExecutionContext context)
     {
-        _logger.LogInformation("Cleanup Azure BlobStorage Job started at: {Now}", DateTime.Now);
+        _logger.LogInformation("Cleanup Azure BlobStorage Job started at: {Now}", DateTime.UtcNow);
         var deletedBlobsCount = await _mediator.Send(new CleanupAzureBlobStorageSnippetsRequest());
         _logger.LogInformation("Cleanup Azure BlobStorage Job - Deletion complete, {Deleted} element(s)", deletedBlobsCount);
     }
